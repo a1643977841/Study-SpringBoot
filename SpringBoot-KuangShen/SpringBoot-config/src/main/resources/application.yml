@@ -1,0 +1,57 @@
+server:
+  port: 8080
+spring:
+  profiles:
+    active: test
+person:
+  name: Joim
+  age: 21
+  happy: false
+  birth: 2022/02/22
+  maps: { k1:2,k2:3,k3:4 }
+  lists:
+    - code
+    - data
+    - test
+  dog:
+    name: 旺财
+    age: 5
+  email: 1643977841@qq.com
+--- #每三个斜杠代表一个配置代码块
+server:
+  port: 8081
+spring:
+  profiles: dev
+person:
+  name: Joim
+  age: 21
+  happy: true
+  birth: 2022/02/24
+  maps: { k1:2,k2:3,k3:4 }
+  lists:
+    - code
+    - data
+    - test
+  dog:
+    name: ddd
+    age: 5
+  email: 1643977841@qq.com
+---
+server:
+  port: 8082
+spring:
+  profiles: test
+person:
+  name: Josssim
+  age: 244
+  happy: false
+  birth: 2022/02/27
+  maps: { k1:2,k2:3,k3:4 }
+  lists:
+    - code
+    - data
+    - test
+  dog:
+    name: sss
+    age: 5
+  email: 1643977841@qq.com

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<!-- <meta charset="UTF-8"> -->
+	<title>thymeleaf模版引擎</title>
+</head>
+<body>
+	<h2>欢迎使用thymeleaf模版引擎</h2>
+	<h2 th:text="${name}"></h2>
+	<!--
+		input等标签必须使用th:value 
+	 -->
+	<input type="text" th:value="${phone}" />
+	<table>
+		<tr>
+			<th>编号</th>
+		</tr>>
+		<tr th:each="l : ${list}">
+			<td th:text="${l}"></td>
+		</tr>
+	</table>
+	<!-- 
+		@符号的作用就是获取到当前项目的路径
+		引入img 或者 css js的时候必须使用@，不然可能出现引用不进去
+	 -->
+	<img th:src="@{/img/代码.png}" />
+</body>
+</html>

@@ -1,0 +1,8 @@
+spring:
+  mvc:
+    # 自定义mvc时间格式化配置
+    date-format: ""
+  messages:
+    basename: i18n.login
+  thymeleaf:
+    cache: false

@@ -1,0 +1,15 @@
+# Project exclude paths
+/SpringBoot-KuangShen/SpringBoot-config/target/
+/SpringBoot-KuangShen/SpringBoot-Data/target/
+/SpringBoot-KuangShen/SpringBoot-Dubbo-service1/target/
+/SpringBoot-KuangShen/SpringBoot-Dubbo-service2/target/
+/SpringBoot-KuangShen/SpringBoot-redis/target/
+/SpringBoot-KuangShen/SpringBoot-security/target/
+/SpringBoot-KuangShen/SpringBoot-shiro/target/
+/SpringBoot-KuangShen/SpringBoot-Swagger2/target/
+/SpringBoot-KuangShen/SpringBoot-Web/target/
+/SpringBoot-MJXY/SpringBoot-MultiData/target/
+/SpringBoot-MJXY/SpringBoot-Mybatis/target/
+/SpringBoot-MJXY/SpringBoot-Mybatis-plus/target/
+/SpringBoot-MJXY/SpringBoot-Shiro/target/
+/SpringBoot-MJXY/SpringBoot-Thymeleaf/target/

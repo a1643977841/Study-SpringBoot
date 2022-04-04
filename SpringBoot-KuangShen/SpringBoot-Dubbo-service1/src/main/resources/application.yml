@@ -1,0 +1,9 @@
+server:
+  port: 8081
+dubbo:
+  application:
+    name: service1
+  registry:
+    address: zookeeper://127.0.0.1:2181
+  scan:
+    base-packages: com.ah.service

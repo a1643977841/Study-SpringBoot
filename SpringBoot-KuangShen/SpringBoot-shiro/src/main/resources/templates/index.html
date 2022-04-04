@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+    <h1>首页</h1>
+    <p th:text="${msg}"></p>
+    <a shiro:hasPermission="user:add" th:href="@{/user/addUser}">addUser</a> | <a shiro:hasPermission="user:uodate" th:href="@{/user/updateUser}">updateUser</a>
+
+    <div th:if="${session.userinfo==null}" >
+        <a th:href="@{/toLogin}">toLogin</a>
+    </div>
+</body>
+</html>
