@@ -16,3 +16,7 @@
 /.idea
 /SpringBoot-MJXY/SpringBoot-Web/target/
 /SpringBoot-MJXY/.idea
+# 忽略Mac系统自动生成的文件
+.DS_Store
+*.iml
+*.mp4
