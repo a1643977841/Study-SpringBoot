@@ -25,7 +25,6 @@ import java.io.IOException;
  */
 @Configuration
 @EnableWebSecurity
-
 public class SecurityConfiguration {
 
 
