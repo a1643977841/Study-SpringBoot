@@ -1,9 +1,14 @@
 package com.ah.mybatis.config;
 
-import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
-import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.aop.interceptor.PerformanceMonitorInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+
+import java.util.Collections;
 
 /**
  * <p>
@@ -15,6 +20,8 @@ import org.springframework.context.annotation.Configuration;
  * @date 2023/11/10 23:41
  */
 @Configuration
+@MapperScan("${mybatis-plus.mapperPackage}")
+@PropertySource("classpath:application.yml")
 public class MybatisPlusConfig {
 
 
@@ -23,8 +30,8 @@ public class MybatisPlusConfig {
      * @return SQL执行效率插件
      */
     @Bean
-    public PerformanceInterceptor persistenceInterceptor() {
-        return new PerformanceInterceptor();
+    public PerformanceMonitorInterceptor performanceMonitorInterceptor() {
+        return new PerformanceMonitorInterceptor();
     }
 
 
@@ -33,8 +40,15 @@ public class MybatisPlusConfig {
      * @return 分页插件
      */
     @Bean
-    public PaginationInterceptor paginationInterceptor() {
-        return new PaginationInterceptor();
+    public PaginationInnerInterceptor paginationInnerInterceptor() {
+        return new PaginationInnerInterceptor();
+    }
+
+    @Bean
+    public MybatisPlusInterceptor mybatisPlusInterceptor(){
+        MybatisPlusInterceptor mybatisPlusInterceptor = new MybatisPlusInterceptor();
+        mybatisPlusInterceptor.setInterceptors(Collections.singletonList(paginationInnerInterceptor()));
+        return mybatisPlusInterceptor;
     }
 
 }
