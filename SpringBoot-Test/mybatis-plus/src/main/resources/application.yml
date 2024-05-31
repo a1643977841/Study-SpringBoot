@@ -10,7 +10,7 @@ spring:
   # 配置数据源
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/cloud_order?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull
+    url: jdbc:mysql://localhost:3306/xfs?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull
     username: root
     password: lgl5201314.
 #    driver-class-name: com.kingbase8.Driver
@@ -22,8 +22,8 @@ spring:
 mybatis-plus:
   # xml扫描，多个目录用逗号或者分号分隔（告诉 Mapper 所对应的 XML 文件位置）
   mapperLocations: classpath*:mapper/**/*Mapper.xml
-  mapperPackage: com.ah.**.mapper
-  typeAliasesPackage: com.ah.**.domain
+  mapperPackage: com.net.**.mapper
+  typeAliasesPackage: com.net.**.domain
   # 以下配置均有默认值,可以不设置
   global-config:
     dbConfig:

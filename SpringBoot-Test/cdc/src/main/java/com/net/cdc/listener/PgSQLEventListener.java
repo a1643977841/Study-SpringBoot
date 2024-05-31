@@ -1,7 +1,9 @@
 package com.net.cdc.listener;
 
+import com.ververica.cdc.connectors.base.source.jdbc.JdbcIncrementalSource;
 import com.ververica.cdc.debezium.DebeziumSourceFunction;
 import lombok.RequiredArgsConstructor;
+import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.restartstrategy.RestartStrategies;
 import org.apache.flink.api.connector.sink2.Sink;
 import org.apache.flink.runtime.state.hashmap.HashMapStateBackend;
@@ -9,6 +11,7 @@ import org.apache.flink.streaming.api.CheckpointingMode;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.CheckpointConfig;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.streaming.api.functions.sink.SinkFunction;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -27,8 +30,8 @@ import java.time.Duration;
 @RequiredArgsConstructor
 public class PgSQLEventListener implements CommandLineRunner {
 
-    private final Sink<String> logSink;
-    private final DebeziumSourceFunction<String> pgDataSource;
+    private final SinkFunction<String> logSink;
+    private final JdbcIncrementalSource<String> pgDataSource;
 
     @Override
     public void run(final String... args) throws Exception {
@@ -51,11 +54,10 @@ public class PgSQLEventListener implements CommandLineRunner {
         //设置状态后端
         env.setStateBackend(new HashMapStateBackend());
 
-        DataStreamSource<String> pgDataStream = env.addSource(pgDataSource, "PostgreSQL_source")
-                .setParallelism(1);
-        // sink到kafka
-        pgDataStream.sinkTo(logSink).name("logSink2");
-
+        env.fromSource(
+                pgDataSource, WatermarkStrategy.noWatermarks(), "PostgreSQL_source")
+                .setParallelism(2)
+                .addSink(logSink);
         env.execute("pg_cdc_log");
     }
 
