@@ -1,0 +1,4 @@
+server:
+  port: 4422
+  servlet:
+    context-path: /rocketmq
