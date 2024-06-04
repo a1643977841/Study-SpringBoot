@@ -2,3 +2,5 @@ server:
   port: 4422
   servlet:
     context-path: /rocketmq
+rocketmq:
+  name-server: 10.10.45.3:9876
